@@ -13,7 +13,6 @@
 
 @property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceGroup *ball;
 @property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceGroup *ballContainer;
-@property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceGroup *brick1;
 @property (unsafe_unretained, nonatomic) IBOutlet WKInterfacePicker *paddlePicker;
 
 @end

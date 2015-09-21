@@ -30,9 +30,16 @@
     CGRect currentScreen = [WKInterfaceDevice currentDevice].screenBounds;
 
     gameSize = CGSizeMake(currentScreen.size.height-19, currentScreen.size.width-3);
-
-    
-    
+    NSMutableArray *items = [NSMutableArray new];
+    for (int i = 0; i<30; i++)
+    {
+        WKImage *image = [WKImage imageWithImageName:[NSString stringWithFormat:@"p%i",i]];
+        WKPickerItem *item = [[WKPickerItem alloc]init];
+        item.contentImage = image;
+        [items addObject:item];
+    }
+    [self.paddlePicker setItems:[NSArray arrayWithArray:items]];
+    [self.paddlePicker setSelectedItemIndex:items.count/2];
     ballPosition = CGPointMake(0, 0);
     ballVelocity = CGVectorMake(1.5, 1.5);
     [NSTimer scheduledTimerWithTimeInterval:0.033 target:self selector:@selector(gameLoop) userInfo:nil repeats:YES];
