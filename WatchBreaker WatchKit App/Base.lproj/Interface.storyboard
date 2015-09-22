@@ -14,11 +14,12 @@
                             <items>
                                 <group width="1" height="10" alignment="left" radius="0.0" spacing="0.0" id="jXz-x2-i9o">
                                     <items>
-                                        <group width="0.20000000000000001" alignment="left" radius="0.0" id="cxv-zy-GqV">
+                                        <group width="0.20000000000000001" alignment="left" radius="0.0" spacing="0.0" id="cxv-zy-GqV">
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                                         </group>
                                     </items>
+                                    <color key="backgroundColor" red="0.40000000596046448" green="0.40000000596046448" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                                 </group>
                                 <group width="1" height="1" heightAdjustment="-20" alignment="left" layout="vertical" radius="0.0" spacing="0.0" id="lFm-gf-5Xp">
@@ -33,7 +34,11 @@
                                 </group>
                                 <group width="1" height="10" alignment="left" layout="vertical" radius="0.0" spacing="0.0" id="jPy-Gg-LOs">
                                     <items>
-                                        <picker width="1" height="1" alignment="left" style="sequence" id="y73-gz-EjZ"/>
+                                        <picker width="1" height="1" alignment="left" style="sequence" id="y73-gz-EjZ">
+                                            <connections>
+                                                <action selector="pickerItemSelectedNSIntegerindex:" destination="AgC-eL-Hgc" id="gos-s0-8wv"/>
+                                            </connections>
+                                        </picker>
                                     </items>
                                 </group>
                             </items>
@@ -43,6 +48,7 @@
                     <connections>
                         <outlet property="ball" destination="5ik-ig-Bgk" id="xNR-YK-Z54"/>
                         <outlet property="ballContainer" destination="lFm-gf-5Xp" id="qUj-z1-dO0"/>
+                        <outlet property="computerPlayerContainer" destination="jXz-x2-i9o" id="HiT-17-uK5"/>
                         <outlet property="paddlePicker" destination="y73-gz-EjZ" id="bQ1-Nv-cGs"/>
                     </connections>
                 </controller>

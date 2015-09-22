@@ -15,6 +15,8 @@
     CGVector ballVelocity;
     CGSize ballSize;
     CGSize gameSize;
+    CGRect playerPaddle;
+    NSMutableArray *paddlItems;
 
 }
 
@@ -28,18 +30,20 @@
     [super awakeWithContext:context];
     ballSize = CGSizeMake(10, 10);
     CGRect currentScreen = [WKInterfaceDevice currentDevice].screenBounds;
-
-    gameSize = CGSizeMake(currentScreen.size.height-19, currentScreen.size.width-3);
-    NSMutableArray *items = [NSMutableArray new];
+    
+    NSLog(@"%@", CGRectCreateDictionaryRepresentation([WKInterfaceDevice currentDevice].screenBounds));
+    
+    gameSize = CGSizeMake(currentScreen.size.width-3, currentScreen.size.height-20);
+    paddlItems = [NSMutableArray new];
     for (int i = 0; i<30; i++)
     {
         WKImage *image = [WKImage imageWithImageName:[NSString stringWithFormat:@"p%i",i]];
         WKPickerItem *item = [[WKPickerItem alloc]init];
         item.contentImage = image;
-        [items addObject:item];
+        [paddlItems addObject:item];
     }
-    [self.paddlePicker setItems:[NSArray arrayWithArray:items]];
-    [self.paddlePicker setSelectedItemIndex:items.count/2];
+    [self.paddlePicker setItems:[NSArray arrayWithArray:paddlItems]];
+    [self.paddlePicker setSelectedItemIndex:paddlItems.count/2];
     ballPosition = CGPointMake(0, 0);
     ballVelocity = CGVectorMake(1.5, 1.5);
     [NSTimer scheduledTimerWithTimeInterval:0.033 target:self selector:@selector(gameLoop) userInfo:nil repeats:YES];
@@ -75,15 +79,26 @@
     if (ballPosition.x+ballSize.width>=gameSize.width) {
         ballVelocity = CGVectorMake(ballVelocity.dx*-1, ballVelocity.dy);
     }
-    if (ballPosition.y+ballSize.height>=gameSize.height) {
-        ballVelocity = CGVectorMake(ballVelocity.dx, ballVelocity.dy*-1);
+    if (ballPosition.y+ballSize.height>=gameSize.height-playerPaddle.size.height) {
+        if (ballPosition.x >= playerPaddle.origin.x && ballPosition.x<playerPaddle.origin.x+playerPaddle.size.width) {
+            ballVelocity = CGVectorMake(ballVelocity.dx, ballVelocity.dy*-1);
+        } else {
+            
+        }
+     
+         ballVelocity = CGVectorMake(ballVelocity.dx, ballVelocity.dy*-1);
     }
     
-    [self.ballContainer setContentInset:UIEdgeInsetsMake(ballPosition.x, ballPosition.y, 0, 0)];
+    [self.ballContainer setContentInset:UIEdgeInsetsMake(ballPosition.y, ballPosition.x, 0, 0)];
     
     
 }
 
+- (IBAction)pickerItemSelectedNSIntegerindex:(NSInteger)value
+{
+    playerPaddle = CGRectMake((value/(CGFloat)paddlItems.count)*gameSize.width, 0, gameSize.width*0.2 , 10);
+    
+}
 @end
 
 

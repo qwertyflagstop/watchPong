@@ -14,5 +14,7 @@
 @property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceGroup *ball;
 @property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceGroup *ballContainer;
 @property (unsafe_unretained, nonatomic) IBOutlet WKInterfacePicker *paddlePicker;
+@property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceGroup *computerPlayerContainer;
+- (IBAction)pickerItemSelectedNSIntegerindex:(NSInteger)value;
 
 @end
